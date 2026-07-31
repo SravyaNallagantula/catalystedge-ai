@@ -1,8 +1,8 @@
-# StockSense Agent
+# CatalystEdge AI
 
 **AI-Powered Autonomous Stock Market Research (ReAct Pattern)**
 
-StockSense is an autonomous stock analysis system implementing the **ReAct (Reasoning + Action)** pattern: iterative reasoning, selective tool invocation, and adaptive summarization. The agent collects real market data (news + historical prices), performs LLM-based sentiment analysis, and produces a structured summary.
+CatalystEdge AI is an autonomous stock analysis system implementing the **ReAct (Reasoning + Action)** pattern: iterative reasoning, selective tool invocation, and adaptive summarization. The agent collects real market data (news + historical prices), performs LLM-based sentiment analysis, and produces a structured summary.
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.135+-green.svg)](https://fastapi.tiangolo.com/)
@@ -32,13 +32,13 @@ StockSense is an autonomous stock analysis system implementing the **ReAct (Reas
 
 ## Overview
 
-StockSense is not a simple chatbot wrapper — it's a **production-grade agentic AI system** that demonstrates advanced patterns in autonomous reasoning, multi-agent coordination, and real-time streaming.
+CatalystEdge AI is not a simple chatbot wrapper — it's a **production-grade agentic AI system** that demonstrates advanced patterns in autonomous reasoning, multi-agent coordination, and real-time streaming.
 
 ### What Makes This Different
 
 Most AI stock analysis tools send a single prompt and return a response. StockSense takes a fundamentally different approach:
 
-| Traditional Approach | StockSense Approach |
+| Traditional Approach | CatalystEdge AI Approach |
 |---------------------|---------------------|
 | Single prompt → single response | Iterative reasoning loop with multiple tool calls |
 | One perspective | Multiple agents with opposing viewpoints |
@@ -90,7 +90,7 @@ graph TD
 ### Project Structure
 
 ```
-StockSense-Agent/
+catalystedge-ai/
 ├── frontend/                # React 19 + TypeScript frontend
 │   ├── src/
 │   │   ├── components/      # UI components (ResultsTabs, DebateView, etc.)
@@ -230,8 +230,8 @@ Investment theses are first-class citizens, not just analysis outputs:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Spkap/StockSense-Agent.git
-cd StockSense-Agent
+git clone https://github.com/SravyaNallagantula/catalystedge-ai.git
+cd catalystedge-ai
 
 # Backend setup
 python -m venv venv
