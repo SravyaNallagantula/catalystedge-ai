@@ -24,7 +24,7 @@ export function exportAsJSON(data: AnalysisData): void {
     type: 'application/json' 
   });
   
-  downloadBlob(blob, `stocksense-${data.ticker}-${formatDate(data.timestamp)}.json`);
+  downloadBlob(blob, `catalystedge-${data.ticker}-${formatDate(data.timestamp)}.json`);
 }
 
 /**
@@ -34,7 +34,7 @@ export function exportAsCSV(data: AnalysisData): void {
   const rows: string[][] = [];
   
   // Header info
-  rows.push(['StockSense Analysis Export']);
+  rows.push(['CatalystEdge AI Analysis Export']);
   rows.push(['Ticker', data.ticker]);
   rows.push(['Timestamp', data.timestamp]);
   rows.push(['Source', data.source]);
@@ -86,7 +86,7 @@ export function exportAsCSV(data: AnalysisData): void {
   const csvContent = rows.map(row => row.join(',')).join('\n');
   const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
   
-  downloadBlob(blob, `stocksense-${data.ticker}-${formatDate(data.timestamp)}.csv`);
+  downloadBlob(blob, `catalystedge-${data.ticker}-${formatDate(data.timestamp)}.csv`);
 }
 
 /**

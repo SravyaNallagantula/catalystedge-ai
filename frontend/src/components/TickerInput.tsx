@@ -77,7 +77,7 @@ const TickerInput = forwardRef<TickerInputRef, TickerInputProps>(({ onAnalyze, d
         <div className="relative flex-1">
           <Input
             ref={inputRef}
-            placeholder="INPUT_TICKER"
+            placeholder="ENTER_TICKER_SYMBOL"
             value={ticker}
             onChange={(e) => handleChange(e.target.value)}
             onFocus={() => setIsFocused(true)}

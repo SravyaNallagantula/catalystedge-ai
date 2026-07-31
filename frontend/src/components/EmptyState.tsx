@@ -20,7 +20,7 @@ interface EmptyStateProps {
 const emptyStateConfig = {
   welcome: {
     icon: Sparkles,
-    title: 'STOCKSENSE_SYS_V2.0',
+    title: 'CATALYSTEDGE_AI',
     description: 'AWAITING TICKER INPUT TO INITIALIZE INTELLIGENCE ROUTINES.',
     actionLabel: null,
     showFeatures: true,

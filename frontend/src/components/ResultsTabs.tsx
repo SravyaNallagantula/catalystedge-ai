@@ -96,7 +96,7 @@ const ResultsTabs = ({ result, onRefresh, isRefreshing }: ResultsTabsProps) => {
               <div className="border border-border-base bg-surface-1 rounded-sm overflow-hidden">
                 <div className="border-b border-border-base/50 bg-surface-2 px-4 py-2 flex items-center gap-2">
                     <FileText className="h-3 w-3 text-txt-muted" />
-                    <h3 className="font-mono text-micro font-bold uppercase tracking-widest text-txt-primary">EXECUTIVE_SUMMARY</h3>
+                    <h3 className="font-mono text-micro font-bold uppercase tracking-widest text-txt-primary">WHY_THIS_STOCK_IS_MOVING</h3>
                 </div>
                 <div className="p-5 bg-canvas">
                   <div className="prose prose-sm dark:prose-invert max-w-none">

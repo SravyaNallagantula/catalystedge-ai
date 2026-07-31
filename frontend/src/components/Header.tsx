@@ -11,7 +11,7 @@ const Header = () => {
         {/* Left Section - Minimalist */}
         <div className="flex items-center gap-4 text-txt-primary">
           <span className="text-sm font-mono font-bold tracking-widest text-txt-primary">
-            STOCKSENSE_SYS_V2.0
+            CATALYSTEDGE_AI
           </span>
         </div>
 
