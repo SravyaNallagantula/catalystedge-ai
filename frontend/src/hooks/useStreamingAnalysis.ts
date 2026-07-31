@@ -48,9 +48,11 @@ export function useStreamingAnalysis() {
   const [state, setState] = useState<StreamingState>(initialState);
   const eventSourceRef = useRef<EventSource | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
+  const completedRef = useRef(false);
 
   const startAnalysis = useCallback((ticker: string) => {
     // Reset state
+    completedRef.current = false;
     setState({ ...initialState, isStreaming: true });
 
     // Close any existing connection
@@ -65,6 +67,12 @@ export function useStreamingAnalysis() {
     eventSource.onmessage = (event) => {
       try {
         const data: StreamEvent = JSON.parse(event.data);
+
+        // Mark terminal events before React schedules the state update.
+        // Closing a completed EventSource can otherwise trigger onerror first.
+        if (data.type === 'completed' || data.type === 'error') {
+          completedRef.current = true;
+        }
         
         setState(prev => {
           const newState = {
@@ -101,13 +109,17 @@ export function useStreamingAnalysis() {
                 newState.finalData = data.data as AnalysisData;
                 newState.partialData = data.data;
               }
+              eventSource.onerror = null;
               eventSource.close();
+              eventSourceRef.current = null;
               break;
             
             case 'error':
               newState.isStreaming = false;
               newState.error = data.message;
+              eventSource.onerror = null;
               eventSource.close();
+              eventSourceRef.current = null;
               break;
           }
 
@@ -119,6 +131,11 @@ export function useStreamingAnalysis() {
     };
 
     eventSource.onerror = (error) => {
+      if (completedRef.current) {
+        eventSource.close();
+        return;
+      }
+
       console.error('SSE connection error:', error);
       setState(prev => ({
         ...prev,
@@ -131,6 +148,8 @@ export function useStreamingAnalysis() {
   }, []);
 
   const stopAnalysis = useCallback(() => {
+    completedRef.current = true;
+
     if (eventSourceRef.current) {
       eventSourceRef.current.close();
       eventSourceRef.current = null;
