@@ -62,7 +62,7 @@ Most AI stock analysis tools send a single prompt and return a response. Catalys
 
 | Layer            | Technology                                     | Purpose                             |
 | ---------------- | ---------------------------------------------- | ----------------------------------- |
-| **LLM / AI**     | Google Gemini 2.5 Flash Lite (LangChain)       | Sentiment & reasoning               |
+| **LLM / AI**     | Google Gemini 3.1 Flash Lite (LangChain)       | Sentiment & reasoning               |
 | **Agent Graph**  | LangGraph 1.0 (StateGraph)                     | Iterative reasoning & tool routing  |
 | **Tool Layer**   | LangChain `@tool` functions                    | News, price, sentiment, persistence |
 | **Backend**      | FastAPI 0.135 + Uvicorn 0.41                   | REST API (analysis, cache, health)  |
