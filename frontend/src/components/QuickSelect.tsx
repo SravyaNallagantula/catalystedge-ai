@@ -20,7 +20,7 @@ const QuickSelect = ({ onSelect, disabled = false }: QuickSelectProps) => {
       <div className="flex items-center gap-2 border-r border-border-base/50 pr-4 mr-2">
           <div className="w-1 h-3 bg-accent" />
           <span className="text-micro font-mono text-txt-muted uppercase tracking-widest shrink-0">
-            POPULAR_TICKERS
+            QUICK_ACCESS
           </span>
       </div>
       <div className="flex gap-2">
