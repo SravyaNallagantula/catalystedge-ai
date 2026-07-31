@@ -39,16 +39,16 @@ It collects recent financial news, historical price data, and company fundamenta
 ```text
 catalystedge-ai/
 ├── frontend/                 # React frontend
-│─ stocksense/
+├── stocksense/
 │   ├── agents/              # Bull, Bear, Skeptic, Synthesizer
 │   ├── api/                 # FastAPI routes
 │   ├── core/                # Data collection and analysis
-│   │─ db/                  # Supabase integration
-│   │─ orchestration/       # ReAct and streaming flows
+│   ├── db/                  # Supabase integration
+│   └── orchestration/       # ReAct and streaming flows
 ├── supabase/                 # Schema and migrations
 ├── tests/
 ├── requirements.txt
-└—— readme.md
+└── readme.md
 ```
 
 ## Local Setup
