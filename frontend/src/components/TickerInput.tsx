@@ -116,7 +116,7 @@ const TickerInput = forwardRef<TickerInputRef, TickerInputProps>(({ onAnalyze, d
           disabled={disabled || !ticker.trim() || !validation.isValid}
           className="h-12 min-w-[120px] bg-accent text-canvas hover:bg-accent/90 font-mono font-bold text-micro uppercase tracking-widest rounded-sm disabled:opacity-50 disabled:bg-surface-2 disabled:text-txt-muted transition-colors border border-transparent disabled:border-border-base"
         >
-          EXECUTE
+          WHY IS IT MOVING?
         </Button>
       </form>
       
