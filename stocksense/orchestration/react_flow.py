@@ -387,7 +387,7 @@ tools = [
 def create_react_agent() -> StateGraph:
 
     llm = get_chat_llm(
-        model="gemini-2.5-flash-lite",
+        model="gemini-3.1-flash-lite",
         temperature=0.1,
         max_output_tokens=4096  # Raised from 1024 — final analysis routinely exceeds 1K tokens
     )
