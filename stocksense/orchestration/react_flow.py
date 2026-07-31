@@ -6,7 +6,7 @@ from langchain_core.messages import BaseMessage, HumanMessage, ToolMessage
 from langchain_core.tools import tool
 
 from stocksense.core.config import get_chat_llm
-from stocksense.core.data_collectors import get_news, get_price_history, get_fundamental_data
+from stocksense.core.data_collectors import get_news, get_news_articles, get_price_history, get_fundamental_data
 from stocksense.core.analyzer import analyze_sentiment_of_headlines
 from stocksense.db.database import save_analysis
 
@@ -19,6 +19,7 @@ class AgentState(TypedDict):
     messages: List[BaseMessage]
     ticker: str
     headlines: List[str]
+    news_articles: List[Dict[str, Any]]
     price_data: List[Dict[str, Any]]
     fundamental_data: Dict[str, Any]  # New: Financial statements and metrics
     sentiment_report: str
@@ -63,13 +64,19 @@ def fetch_news_headlines(ticker: str, days: int = 7) -> Dict:
     """
     try:
         ticker = ticker.upper().strip()
-        headlines = get_news(ticker, days=days)
+        news_articles = get_news_articles(ticker, days=days)
+        headlines = [
+            article.get("title", "")
+            for article in news_articles
+            if article.get("title")
+        ]
 
         # Consider retrieval successful only if we have at least one headline.
         if headlines:
             return {
                 "success": True,
                 "headlines": headlines,
+                "news_articles": news_articles,
                 "count": len(headlines),
                 "ticker": ticker,
                 "days": days
@@ -79,6 +86,7 @@ def fetch_news_headlines(ticker: str, days: int = 7) -> Dict:
                 "success": False,
                 "error": "No headlines found",
                 "headlines": [],
+                "news_articles": [],
                 "count": 0,
                 "ticker": ticker,
                 "days": days
@@ -88,6 +96,7 @@ def fetch_news_headlines(ticker: str, days: int = 7) -> Dict:
             "success": False,
             "error": str(e),
             "headlines": [],
+            "news_articles": [],
             "count": 0,
             "ticker": ticker.upper().strip() if isinstance(ticker, str) else None,
             "days": days
@@ -573,6 +582,7 @@ The ReAct agent completed analysis using {len(set(state.get('tools_used', [])))}
 
             if tool_name == "fetch_news_headlines" and result.get("success"):
                 state["headlines"] = result.get("headlines", [])
+                state["news_articles"] = result.get("news_articles", [])
                 reasoning_steps.append(f"Fetched {len(state['headlines'])} headlines")
 
             elif tool_name == "fetch_price_data" and result.get("success"):
@@ -674,6 +684,7 @@ def run_react_analysis(ticker: str) -> Dict:
         "messages": [],
         "ticker": ticker.upper(),
         "headlines": [],
+        "news_articles": [],
         "price_data": [],
         "fundamental_data": {},  # Init empty
         "sentiment_report": "",
@@ -715,6 +726,7 @@ def run_react_analysis(ticker: str) -> Dict:
             "summary": final_state.get("summary", "Analysis completed"),
             "sentiment_report": final_state.get("sentiment_report", ""),
             "headlines": final_state.get("headlines", []),
+            "news_articles": final_state.get("news_articles", []),
             "price_data": final_state.get("price_data"),
             "fundamental_data": final_state.get("fundamental_data"),
             "reasoning_steps": final_state.get("reasoning_steps", []),

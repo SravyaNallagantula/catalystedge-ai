@@ -4,6 +4,8 @@ import { Button } from './ui/button';
 import FundamentalsCard from './FundamentalsCard';
 import SkepticCard from './SkepticCard';
 import SentimentCard from './SentimentCard';
+import PriceMovementHero from './PriceMovementHero';
+import NewsSources from './NewsSources';
 import type { AnalysisData } from '../types/api';
 import { cn } from '../utils/cn';
 
@@ -33,6 +35,8 @@ const ResultsTabs = ({ result, onRefresh, isRefreshing }: ResultsTabsProps) => {
 
   return (
     <div className="space-y-6">
+      <PriceMovementHero result={result} />
+
       {/* Terminal Header */}
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between border-b border-border-base pb-4">
         <div>
@@ -104,6 +108,8 @@ const ResultsTabs = ({ result, onRefresh, isRefreshing }: ResultsTabsProps) => {
                   </div>
                 </div>
               </div>
+
+              <NewsSources articles={result.news_articles} />
 
               {/* Reasoning Steps */}
               <div className="border border-border-base bg-surface-1 rounded-sm overflow-hidden">

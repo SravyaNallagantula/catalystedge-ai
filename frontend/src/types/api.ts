@@ -52,6 +52,13 @@ export interface BearCase {
   severity: 'High' | 'Medium' | 'Low';
 }
 
+export interface NewsArticle {
+  title: string;
+  source: string;
+  url: string;
+  published_at: string;
+}
+
 /**
  * Core analysis data returned by the API
  */
@@ -68,6 +75,7 @@ export interface AnalysisData {
     cash_flow?: Record<string, any>;
   };
   headlines: string[];
+  news_articles?: NewsArticle[];
   headlines_count: number;
   reasoning_steps: string[];
   tools_used: string[];

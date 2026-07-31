@@ -123,6 +123,7 @@ async def run_streaming_analysis(
         "messages": [],
         "ticker": ticker,
         "headlines": [],
+        "news_articles": [],
         "price_data": [],
         "sentiment_report": "",
         "summary": "",
@@ -172,6 +173,7 @@ async def run_streaming_analysis(
         
         if news_result.get("success"):
             state["headlines"] = news_result.get("headlines", [])
+            state["news_articles"] = news_result.get("news_articles", [])
         
         yield emit(StreamEvent(
             event_type=StreamEventType.TOOL_COMPLETED,
@@ -310,6 +312,7 @@ Analysis completed using streaming mode.
             "summary": summary,
             "sentiment_report": state["sentiment_report"],
             "headlines": state["headlines"],
+            "news_articles": state["news_articles"],
             "price_data": state["price_data"],
             "overall_sentiment": state["overall_sentiment"],
             "overall_confidence": state["overall_confidence"],
