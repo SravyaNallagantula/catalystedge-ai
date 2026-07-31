@@ -60,7 +60,7 @@ def analyze_sentiment_structured(headlines: List[str]) -> SentimentAnalysisResul
     
     try:
         llm = get_chat_llm(
-            model="gemini-2.5-flash-lite",
+            model="gemini-3.1-flash-lite",
             temperature=0.2,  # Lower temperature for more consistent structured output
             max_output_tokens=4096
         )
@@ -120,7 +120,18 @@ Respond with a JSON object matching this exact structure:
 Return ONLY the JSON object, no additional text."""
         
         response = llm.invoke(prompt)
-        response_text = response.content if hasattr(response, 'content') else str(response)
+        raw_content = response.content if hasattr(response, 'content') else response
+
+        if isinstance(raw_content, list):
+            text_parts = []
+            for item in raw_content:
+                if isinstance(item, dict):
+                    text_parts.append(str(item.get("text", "")))
+                else:
+                    text_parts.append(str(item))
+            response_text = "\n".join(part for part in text_parts if part)
+        else:
+            response_text = str(raw_content)
         
         # Parse the JSON response
         

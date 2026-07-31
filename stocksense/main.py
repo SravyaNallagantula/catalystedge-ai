@@ -301,6 +301,18 @@ async def analyze_stock(
             summary = final_state.get("summary", "")
             sentiment_report = final_state.get("sentiment_report", "")
 
+            if isinstance(summary, list):
+                summary = "\n".join(str(item) for item in summary)
+
+            if isinstance(sentiment_report, list):
+                sentiment_report = "\n".join(str(item) for item in sentiment_report)
+
+            if not isinstance(summary, str):
+                summary = str(summary)
+
+            if not isinstance(sentiment_report, str):
+                sentiment_report = str(sentiment_report)
+
             if not summary or summary.startswith("Analysis failed"):
                 raise HTTPException(
                     status_code=500,

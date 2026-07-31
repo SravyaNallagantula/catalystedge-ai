@@ -109,11 +109,11 @@ const ResultsTabs = ({ result, onRefresh, isRefreshing }: ResultsTabsProps) => {
               <div className="border border-border-base bg-surface-1 rounded-sm overflow-hidden">
                 <div className="border-b border-border-base/50 bg-surface-2 px-4 py-2 flex justify-between items-center">
                   <h3 className="font-mono text-micro font-bold uppercase tracking-widest text-txt-primary">METHODOLOGY</h3>
-                  <span className="font-mono text-micro text-txt-muted uppercase tracking-widest">STEPS_TAKEN: {result.reasoning_steps.length}</span>
+                  <span className="font-mono text-micro text-txt-muted uppercase tracking-widest">STEPS_TAKEN: {(result.reasoning_steps ?? []).length}</span>
                 </div>
                 <div className="p-4 bg-canvas">
                   <ul className="space-y-2 font-mono">
-                    {result.reasoning_steps.map((step, i) => (
+                    {(result.reasoning_steps ?? []).map((step, i) => (
                       <li key={i} className="flex gap-3 text-micro tracking-widest uppercase">
                         <div className="flex shrink-0 w-6 h-full text-txt-muted font-bold">
                           [{i + 1}]
@@ -138,7 +138,7 @@ const ResultsTabs = ({ result, onRefresh, isRefreshing }: ResultsTabsProps) => {
                   <h4 className="text-micro font-mono font-bold uppercase tracking-widest text-txt-primary">TOOLS_DEPLOYED</h4>
                 </div>
                 <div className="p-3 bg-canvas flex flex-col gap-1.5">
-                  {result.tools_used.map((tool) => (
+                  {(result.tools_used ?? []).map((tool) => (
                     <div key={tool} className="flex items-center gap-2 px-2 py-1.5 border border-border-base/50 bg-surface-2 rounded-[2px]">
                       <span className="text-micro font-mono text-txt-secondary uppercase tracking-widest">{`>`} {tool}</span>
                     </div>

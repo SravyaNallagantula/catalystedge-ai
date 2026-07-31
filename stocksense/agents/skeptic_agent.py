@@ -101,7 +101,7 @@ def generate_skeptic_analysis(
     
     try:
         llm = get_chat_llm(
-            model="gemini-2.5-flash-lite",
+            model="gemini-3.1-flash-lite",
             temperature=0.3,  # Slightly higher for more varied critique
             max_output_tokens=2048
         )
@@ -158,7 +158,18 @@ Respond with a JSON object:
 Return ONLY the JSON object."""
 
         response = llm.invoke(prompt)
-        response_text = response.content if hasattr(response, 'content') else str(response)
+        raw_content = response.content if hasattr(response, 'content') else response
+
+        if isinstance(raw_content, list):
+            text_parts = []
+            for item in raw_content:
+                if isinstance(item, dict):
+                    text_parts.append(str(item.get("text", "")))
+                else:
+                    text_parts.append(str(item))
+            response_text = "\n".join(part for part in text_parts if part)
+        else:
+            response_text = str(raw_content)
         
         # Clean up response
         cleaned = response_text.strip()
