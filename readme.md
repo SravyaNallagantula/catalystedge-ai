@@ -36,7 +36,7 @@ CatalystEdge AI is not a simple chatbot wrapper — it's a **production-grade ag
 
 ### What Makes This Different
 
-Most AI stock analysis tools send a single prompt and return a response. StockSense takes a fundamentally different approach:
+Most AI stock analysis tools send a single prompt and return a response. CatalystEdge AI takes a fundamentally different approach:
 
 | Traditional Approach | CatalystEdge AI Approach |
 |---------------------|---------------------|
@@ -142,7 +142,7 @@ catalystedge-ai/
 
 ### 🤖 Autonomous ReAct Agent
 
-Unlike simple prompt-and-response systems, StockSense implements a true reasoning loop:
+Unlike simple prompt-and-response systems, CatalystEdge AI implements a true reasoning loop:
 
 1. **Observe** → Agent receives ticker input and current state
 2. **Reason** → LLM decides what information is needed
@@ -166,7 +166,7 @@ Each agent is **not just a different prompt** — they receive the same underlyi
 
 ### ⚔️ Anti-Sycophancy Architecture
 
-AI models tend to agree with users or produce overly optimistic outputs. StockSense addresses this with:
+AI models tend to agree with users or produce overly optimistic outputs. CatalystEdge AI addresses this with:
 
 **1. Information Asymmetry**
 - Bull Analyst sees growth metrics first (revenue, forward P/E, targets)
@@ -378,7 +378,7 @@ cd frontend
 pnpm run build  # Produces dist/ folder
 ```
 
-Set `VITE_API_URL` to your deployed backend URL (e.g. `https://stocksense.onrender.com`).
+Set `VITE_API_URL` to your deployed backend URL (e.g. `https://your-catalystedge-backend.onrender.com`).
 
 ---
 
