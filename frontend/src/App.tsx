@@ -23,7 +23,7 @@ import { cn } from './utils/cn';
 
 function AppContent() {
   const [selectedTicker, setSelectedTicker] = useState<string | null>(null);
-  const [currentView, setCurrentView] = useState<'dashboard' | 'theses' | 'alerts'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'history' | 'theses' | 'alerts'>('dashboard');
   const { addToast } = useToast();
   const tickerInputRef = useRef<TickerInputRef>(null);
   
@@ -66,6 +66,7 @@ function AppContent() {
   const handleSelectHistory = (ticker: string) => {
     setSelectedTicker(ticker);
     streaming.reset();
+    setCurrentView('dashboard');
   };
 
   const handleCancel = () => {
@@ -122,6 +123,35 @@ function AppContent() {
       });
     }
   }, [isHealthError, addToast]);
+
+  // Render standalone analysis history
+  if (currentView === 'history') {
+    return (
+      <div className="flex min-h-screen bg-canvas font-mono text-txt-primary selection:bg-accent selection:text-canvas antialiased relative">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+        <CommandRail onNavigate={setCurrentView} currentView={currentView} />
+        <main className="flex flex-1 flex-col ml-14 relative z-10">
+          <Header />
+          <div className="p-4 md:p-6 lg:p-8">
+            <div className="mb-6">
+              <p className="font-mono text-micro font-bold uppercase tracking-widest text-accent">
+                ANALYSIS_HISTORY
+              </p>
+              <h1 className="mt-2 font-mono text-2xl font-bold tracking-tight text-txt-primary">
+                Recent Market Research
+              </h1>
+              <p className="mt-2 max-w-2xl text-sm text-txt-secondary">
+                Open a previously cached analysis without running the AI workflow again.
+              </p>
+            </div>
+            <div className="max-w-3xl">
+              <AnalysisHistory onSelectHistory={handleSelectHistory} />
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   // Render ThesesPage if in theses view
   if (currentView === 'theses') {
