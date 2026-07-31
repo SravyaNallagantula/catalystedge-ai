@@ -124,7 +124,7 @@ const SentimentCard = ({ data, report }: SentimentCardProps) => {
               {config.label}
             </h4>
             <span className="text-micro font-mono text-txt-muted uppercase tracking-widest mt-1.5">
-              {hasStructuredData ? 'SYS_ANALYSIS' : 'EST_ANALYSIS'}
+              {hasStructuredData ? 'AI_SIGNAL' : 'EST_SIGNAL'}
             </span>
           </div>
         </div>
@@ -133,7 +133,7 @@ const SentimentCard = ({ data, report }: SentimentCardProps) => {
             {Math.round(confidence * 100)}%
           </span>
           <span className="text-micro font-mono text-txt-muted uppercase tracking-widest mt-1.5">
-            CONF_LVL
+            CONFIDENCE
           </span>
         </div>
       </div>

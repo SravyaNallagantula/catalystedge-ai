@@ -14,8 +14,8 @@ interface ResultsTabsProps {
 }
 
 const tabs = [
-  { id: 'thesis', label: 'INVESTMENT_THESIS', icon: FileText },
-  { id: 'skeptic', label: 'BEAR_CASE_RISKS', icon: ShieldAlert },
+  { id: 'thesis', label: 'CATALYST_SUMMARY', icon: FileText },
+  { id: 'skeptic', label: 'RISK_SIGNALS', icon: ShieldAlert },
   { id: 'fundamentals', label: 'FUNDAMENTAL_DATA', icon: BarChart3 },
 ];
 
@@ -57,7 +57,7 @@ const ResultsTabs = ({ result, onRefresh, isRefreshing }: ResultsTabsProps) => {
           className="gap-2 font-mono text-micro tracking-widest uppercase border border-border-base bg-surface-1 text-txt-secondary hover:text-txt-primary hover:bg-surface-2 hover:border-border-strong rounded-sm h-8"
         >
           <RefreshCw className={cn("h-3 w-3", isRefreshing && "animate-spin")} />
-          <span>RERUN_SEQ</span>
+          <span>REFRESH_ANALYSIS</span>
         </Button>
       </div>
 
