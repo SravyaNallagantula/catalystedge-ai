@@ -46,7 +46,7 @@ const ResultsTabs = ({ result, onRefresh, isRefreshing }: ResultsTabsProps) => {
             </div>
           </div>
           <p className="text-sm font-mono text-txt-muted uppercase tracking-widest">
-            LOG_ENTRY: {new Date(result.timestamp).toLocaleDateString()} // {new Date(result.timestamp).toLocaleTimeString()}
+            LAST_UPDATED: {new Date(result.timestamp).toLocaleDateString()} // {new Date(result.timestamp).toLocaleTimeString()}
           </p>
         </div>
         <Button
@@ -108,8 +108,8 @@ const ResultsTabs = ({ result, onRefresh, isRefreshing }: ResultsTabsProps) => {
               {/* Reasoning Steps */}
               <div className="border border-border-base bg-surface-1 rounded-sm overflow-hidden">
                 <div className="border-b border-border-base/50 bg-surface-2 px-4 py-2 flex justify-between items-center">
-                  <h3 className="font-mono text-micro font-bold uppercase tracking-widest text-txt-primary">METHODOLOGY</h3>
-                  <span className="font-mono text-micro text-txt-muted uppercase tracking-widest">STEPS_TAKEN: {(result.reasoning_steps ?? []).length}</span>
+                  <h3 className="font-mono text-micro font-bold uppercase tracking-widest text-txt-primary">HOW_THE_AI_DECIDED</h3>
+                  <span className="font-mono text-micro text-txt-muted uppercase tracking-widest">REASONING_STEPS: {(result.reasoning_steps ?? []).length}</span>
                 </div>
                 <div className="p-4 bg-canvas">
                   <ul className="space-y-2 font-mono">
